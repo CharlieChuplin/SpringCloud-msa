@@ -1,0 +1,16 @@
+server:
+  port: 0 # 0번 port는 Random으로 port를 할당한다.
+
+spring:
+  application:
+    name: user-service
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}} # [host:인스턴스ID] 설정
+  client:
+    register-with-eureka: true  # Eureka 서버에 자신을 등록
+    fetch-registry: true        # Eureka 서버에서 레지스트리를 갱신
+    service-url:
+      default-zone: http://127.0.0.1:8761/eureka #Eureka Server의 위치를 설정
